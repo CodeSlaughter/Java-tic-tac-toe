@@ -151,6 +151,51 @@ public class Game {
     public String checkGameWinner(char [][]grid){
         String result = "None";
         //Student code goes here ...
+        //check for vertical winner
+        for (int i = 0; i < 3; i++){
+            if((grid[i][0] == 'x' || grid[i][0] == 'o') && grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2]){
+                if(grid[i][0] == 'x'){
+                    result = "X wins";
+                } else {
+                    result = "O wins";
+                }
+                return result;
+            }
+        }
+        //check for horizontal winner
+        for (int i = 0; i < 3; i++){
+            if((grid[0][i] == 'x' || grid[0][i] == 'o') && grid[0][i] == grid[1][i] && grid[1][i] == grid[2][i]){
+                if(grid[i][0] == 'x'){
+                    result = "X wins";
+                } else {
+                    result = "O wins";
+                }
+                return result;
+            }
+        }
+        //check for diagonal winner
+        for (int i = 0; i < 3; i++){
+            if((grid[1][1] == 'x' || grid[1][1] == 'o') && ((grid[0][0] == grid[2][2] && grid[2][2] == grid[1][1]) || (grid[2][0] == grid[0][2] && grid[0][2] == grid[1][1]))) {
+                if (grid[1][1] == 'x') {
+                    result = "X wins";
+                } else {
+                    result = "O wins";
+                }
+                return result;
+            }
+        }
+        //check for game end
+        int counter = 0;
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                if(grid[i][j] == '-'){
+                    counter = counter + 1;
+                }
+            }
+        }
+        if(counter == 0){
+            result = "Tie!";
+        }
         return result;
     }
 
